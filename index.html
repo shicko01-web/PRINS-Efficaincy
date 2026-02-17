@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ניתוח נצילות אנרגטית - מערכת Prins</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts (Heebo for Hebrew) -->
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Heebo', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+        
+        /* Vibrant Palette: Deep Technical Blue & Energetic Green */
+        /* Palette Name: Eco-Tech Vibrant */
+        :root {
+            --primary: #0047AB; /* Cobalt Blue */
+            --accent: #00A86B; /* Jade/Teal */
+            --dark: #111827;
+            --light: #F9FAFB;
+            --danger: #EF4444;
+        }
+
+        .text-primary { color: var(--primary); }
+        .bg-primary { background-color: var(--primary); }
+        .text-accent { color: var(--accent); }
+        .bg-accent { background-color: var(--accent); }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 650px;
+            height: 350px;
+            max-height: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Hero Section -->
+    <header class="bg-white shadow-lg relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-700 via-blue-500 to-green-500"></div>
+        <div class="container mx-auto px-6 py-12 md:py-20 text-center relative z-10">
+            <!-- Polak Group Header -->
+            <p class="text-xl md:text-2xl font-bold text-blue-600 mb-2">קבוצת פולק גאה להציג:</p>
+            
+            <!-- Main Title with requested updates -->
+            <h1 class="text-4xl md:text-6xl font-black text-gray-900 mb-4 leading-tight">
+                מערכת צנרת <span class="text-blue-700 italic">PPR עם בידוד מובנה Prins</span>
+                <br/>
+                <span class="text-2xl md:text-3xl font-light text-gray-600">ניתוח הנדסי ותרמודינמי</span>
+            </h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-10">
+                מעבר לנתוני מעבדה: ניתוח מקיף של נצילות אנרגטית, מנגנוני הפחתת הפסדי חום ועמידות לאורך זמן במערכות הולכת אנרגיה.
+            </p>
+            
+            <!-- Key Stat Box with "Up to" added -->
+            <div class="inline-block bg-white border-2 border-green-500 rounded-3xl p-8 shadow-xl transform transition hover:scale-105 duration-300">
+                <span class="block text-gray-500 text-lg font-semibold uppercase tracking-wider mb-2">חיסכון כולל בהפסדי חום</span>
+                <div class="flex items-center justify-center gap-2">
+                    <span class="text-2xl md:text-3xl font-bold text-green-600">עד</span>
+                    <span class="text-6xl md:text-7xl font-black text-green-600">70%</span>
+                </div>
+                <span class="block text-sm text-gray-400 mt-2">בהשוואה לבידוד קונבנציונלי לאורך חיי המערכת</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <main class="container mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-2 gap-12">
+
+        <!-- Section 1: The Real World Gap -->
+        <section class="md:col-span-2 bg-white rounded-2xl shadow-md p-8 border-t-4 border-blue-600">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+                <div class="lg:col-span-1">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">הפער בין הנייר למציאות</h2>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                        בחינה הנדסית של הפסדי חום חייבת לכלול את "העולם האמיתי". בעוד שנתוני מעבדה מראים חיסכון של כ-50%, בשטח המצב שונה.
+                    </p>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        בידוד קונבנציונלי סובל מ"קנסות" ביצועים: חדירת לחות, גשרי קור בתמיכות, והתיישנות. מערכת ה-Prins מבטלת גורמים אלו במקור.
+                    </p>
+                    <div class="bg-blue-50 p-4 rounded-lg border-r-4 border-blue-500">
+                        <h4 class="font-bold text-blue-900 text-lg mb-1">מקרה בוחן (צנרת 32 מ"מ):</h4>
+                        <p class="text-sm text-blue-800">
+                            השוואה בטמפרטורת עבודה של 70°C. שימו לב כיצד הגורמים המשניים מכפילים את הפסדי החום במערכת רגילה.
+                        </p>
+                    </div>
+                </div>
+                <div class="lg:col-span-2">
+                    <div class="chart-container">
+                        <canvas id="realWorldChart"></canvas>
+                    </div>
+                    <p class="text-center text-sm text-gray-500 mt-4">גרף עמודות מצטבר: פירוק רכיבי איבוד החום (וואט למטר)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Nominal Data Comparison -->
+        <section class="bg-white rounded-2xl shadow-md p-6 border-t-4 border-teal-500">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">ביצועים נומינליים (תקן EN 253)</h3>
+            <p class="text-gray-600 mb-6 text-sm">
+                גם בתנאי מעבדה אידיאליים, עובי הבידוד האחיד ומוליכות ה-PUR המעולה של Prins מעניקים יתרון ברור על פני בידוד סטנדרטי בכל הקטרים.
+            </p>
+            <div class="chart-container h-80">
+                <canvas id="nominalChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Section 3: The Moisture Penalty -->
+        <section class="bg-white rounded-2xl shadow-md p-6 border-t-4 border-red-500">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">קנס הלחות (Moisture Penalty)</h3>
+            <p class="text-gray-600 mb-6 text-sm">
+                מים מוליכים חום פי 20 מחומר בידוד. עליה קלה באחוזי הלחות בבידוד סיבי גורמת לקריסה של היעילות התרמית. מעטפת ה-Prins מונעת זאת לחלוטין.
+            </p>
+            <div class="chart-container h-80">
+                <canvas id="moistureChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Section 4: Tech Specs -->
+        <section class="md:col-span-2 bg-gray-800 text-white rounded-2xl shadow-xl p-8">
+            <h2 class="text-3xl font-bold mb-8 text-center text-blue-300">טכנולוגיית מבנה ומפרט טכני</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-700 rounded-xl p-6 text-center transform transition hover:-translate-y-2">
+                    <div class="text-5xl mb-4">🛡️</div>
+                    <h3 class="text-xl font-bold text-blue-200 mb-2">מבנה טרום-מבודד</h3>
+                    <p class="text-gray-300 text-sm">
+                        שילוב תעשייתי של צנרת שירות (PPR/PP-RCT), בידוד PUR בצפיפות גבוהה ומעטפת הגנה חיצונית ליחידה אחת הומוגנית.
+                    </p>
+                </div>
+                
+                <div class="bg-gray-700 rounded-xl p-6 text-center transform transition hover:-translate-y-2">
+                    <div class="text-5xl mb-4">🔥</div>
+                    <h3 class="text-xl font-bold text-blue-200 mb-2">בטיחות אש</h3>
+                    <p class="text-gray-300 text-sm">
+                        סיווג <strong>B-s2, d0</strong> לפי תקן EN 13501-1. תרומה מוגבלת לאש, ללא טיפות בוערות, מתאים להתקנה במבנים.
+                    </p>
+                </div>
+
+                <div class="bg-gray-700 rounded-xl p-6 text-center transform transition hover:-translate-y-2">
+                    <div class="text-5xl mb-4">📏</div>
+                    <h3 class="text-xl font-bold text-blue-200 mb-2">ריסון התפשטות</h3>
+                    <p class="text-gray-300 text-sm">
+                        מקדם התפשטות של <strong>0.016 mm/mK</strong> בלבד הודות למבנה ה"קשור". חוסך לולאות התפשטות ומקטין עומסים.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-12 bg-gray-900 rounded-xl p-6">
+                <h4 class="text-lg font-semibold text-gray-400 mb-4 text-center">השוואת מקדמי התפשטות תרמית (נמוך יותר = טוב יותר)</h4>
+                <div class="chart-container h-48">
+                    <canvas id="expansionChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-900 text-gray-400 py-10 text-center mt-8 border-t border-gray-800">
+        <p class="text-lg font-bold text-white mb-2">קבוצת פולק - פתרונות מתקדמים להולכת אנרגיה ובידוד תרמי</p>
+        <p class="text-md mb-4 text-gray-300">מייל: pump@polak.co.il ; משרד: 03-9100333</p>
+        <div class="text-xs text-gray-500 pt-4 border-t border-gray-800 max-w-md mx-auto">
+            Data based on Engineering Report: Prins Pipe System Analysis.
+        </div>
+    </footer>
+
+    <script>
+        function wrapLabels(labels) {
+            return labels.map(label => {
+                if (label.length <= 16) return label;
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = words[0];
+                for (let i = 1; i < words.length; i++) {
+                    if ((currentLine + " " + words[i]).length <= 16) {
+                        currentLine += " " + words[i];
+                    } else {
+                        lines.push(currentLine);
+                        currentLine = words[i];
+                    }
+                }
+                lines.push(currentLine);
+                return lines;
+            });
+        }
+
+        const commonTooltipConfig = {
+            callbacks: {
+                title: function(tooltipItems) {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    return Array.isArray(label) ? label.join(' ') : label;
+                }
+            }
+        };
+
+        const ctxReal = document.getElementById('realWorldChart').getContext('2d');
+        new Chart(ctxReal, {
+            type: 'bar',
+            data: {
+                labels: wrapLabels(['בידוד קונבנציונלי (בשטח)', 'מערכת Prins (במפעל)']),
+                datasets: [
+                    { label: 'הפסד נומינלי (בסיס)', data: [12.0, 6.7], backgroundColor: '#3B82F6' },
+                    { label: 'תוספת עקב לחות', data: [3.6, 0], backgroundColor: '#EF4444' },
+                    { label: 'תוספת עקב גשרי קור', data: [2.4, 0.5], backgroundColor: '#F59E0B' }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: commonTooltipConfig,
+                    legend: { position: 'bottom', labels: { font: { family: 'Heebo' } } }
+                },
+                scales: {
+                    x: { stacked: true, ticks: { font: { family: 'Heebo' } } },
+                    y: { stacked: true, title: { display: true, text: 'W/m' } }
+                }
+            }
+        });
+
+        const ctxNominal = document.getElementById('nominalChart').getContext('2d');
+        new Chart(ctxNominal, {
+            type: 'bar',
+            data: {
+                labels: wrapLabels(['20mm', '25mm', '75mm', '125mm', '315mm']),
+                datasets: [
+                    { label: 'בידוד קונבנציונלי', data: [10.0, 11.2, 18.8, 23.2, 44.2], backgroundColor: '#9CA3AF' },
+                    { label: 'מערכת Prins', data: [4.2, 5.1, 9.0, 9.9, 22.1], backgroundColor: '#00A86B' }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { tooltip: commonTooltipConfig },
+                scales: { y: { title: { display: true, text: 'W/m' } } }
+            }
+        });
+
+        const ctxMoisture = document.getElementById('moistureChart').getContext('2d');
+        new Chart(ctxMoisture, {
+            type: 'line',
+            data: {
+                labels: ['יבש', '5%', '10%', '15%'],
+                datasets: [
+                    { label: 'בידוד סיבי רגיל', data: [0.035, 0.065, 0.105, 0.145], borderColor: '#EF4444', fill: false },
+                    { label: 'Prins PUR', data: [0.028, 0.028, 0.028, 0.028], borderColor: '#0047AB', borderWidth: 3, fill: false }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { tooltip: commonTooltipConfig },
+                scales: { y: { title: { display: true, text: 'W/mK' } } }
+            }
+        });
+
+        const ctxExpansion = document.getElementById('expansionChart').getContext('2d');
+        new Chart(ctxExpansion, {
+            type: 'bar',
+            indexAxis: 'y',
+            data: {
+                labels: wrapLabels(['PPR רגיל', 'נחושת', 'Prins']),
+                datasets: [{
+                    label: 'מקדם התפשטות (mm/mK)',
+                    data: [0.15, 0.017, 0.016],
+                    backgroundColor: ['rgba(255,255,255,0.2)', 'rgba(255,255,255,0.2)', '#00A86B']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { tooltip: commonTooltipConfig, legend: { display: false } },
+                scales: { 
+                    x: { ticks: { color: '#9CA3AF' } },
+                    y: { ticks: { color: '#E5E7EB', font: { family: 'Heebo' } } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
